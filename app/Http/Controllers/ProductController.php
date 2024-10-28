@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductStoreRequest;
 use App\Models\Product;
 use App\Http\Controllers\Controller;
-use Dotenv\Validator;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -43,6 +43,8 @@ class ProductController extends Controller
 //            'data' => $product
 //        ], 201);
 //    }
+
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
