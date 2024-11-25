@@ -3,24 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductStoreRequest;
+use App\Http\Resources\ProductResource;
 use App\Models\Product;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class ProductController extends BaseController
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $products = Product::all();
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Products retrieved successfully',
-            'data' => $products
-        ], 200);
+        return $this->successResponse(ProductResource::collection(Product::all()));
     }
 
     /**
@@ -37,43 +30,39 @@ class ProductController extends Controller
     public function store(ProductStoreRequest $productStoreRequest)
     {
         $product = Product::create($productStoreRequest->validated());
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Product created successfully',
-            'data' => $product
-        ], 201);
+        return $this->successResponse(new ProductResource($product));
     }
 
 
-//    public function store(Request $request)
-//    {
-//        $validator = Validator::make($request->all(), [
-//            'product' => 'required|string',
-//            'from' => 'required|string',
-//            'price_baht' => 'required|numeric',
-//            'price_dong' => 'required|numeric',
-//            'price_usd' => 'required|numeric',
-//            'profit' => 'required|numeric',
-//            'sale_price' => 'required|numeric',
-//            'status' => 'required|boolean',
-//            'quantity' => 'required|integer',
-//        ]);
-//
-//        if ($validator->fails()) {
-//            return response()->json([
-//                'status' => 'error',
-//                'message' => 'Validation error',
-//                'errors' => $validator->errors()
-//            ], 422);
-//        }
-//
-//        $product = Product::create($request->all());
-//        return response()->json([
-//            'status' => 'success',
-//            'message' => 'Product created successfully',
-//            'data' => $product
-//        ], 201);
-//    }
+    //    public function store(Request $request)
+    //    {
+    //        $validator = Validator::make($request->all(), [
+    //            'product' => 'required|string',
+    //            'from' => 'required|string',
+    //            'price_baht' => 'required|numeric',
+    //            'price_dong' => 'required|numeric',
+    //            'price_usd' => 'required|numeric',
+    //            'profit' => 'required|numeric',
+    //            'sale_price' => 'required|numeric',
+    //            'status' => 'required|boolean',
+    //            'quantity' => 'required|integer',
+    //        ]);
+    //
+    //        if ($validator->fails()) {
+    //            return response()->json([
+    //                'status' => 'error',
+    //                'message' => 'Validation error',
+    //                'errors' => $validator->errors()
+    //            ], 422);
+    //        }
+    //
+    //        $product = Product::create($request->all());
+    //        return response()->json([
+    //            'status' => 'success',
+    //            'message' => 'Product created successfully',
+    //            'data' => $product
+    //        ], 201);
+    //    }
 
     /**
      * Display the specified resource.
