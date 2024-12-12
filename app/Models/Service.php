@@ -5,16 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Motorbike extends Model
+class Service extends Model
 {
+
     use HasFactory;
 
     protected $fillable = [
-        'customer_id',
-        'make',
-        'model',
-        'year',
-        'plate_number',
-        'engine_number',
+        'motorbike_id',
+        'service_date',
+        'service_type',
+        'service_status',
+        'service_cost'
     ];
+
 }
