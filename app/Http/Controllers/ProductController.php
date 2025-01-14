@@ -13,7 +13,13 @@ class ProductController extends BaseController
      */
     public function index()
     {
-        return $this->successResponse(ProductResource::collection(Product::all()));
+        $products = Product::all();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Products retrieved successfully',
+            'data' => $products
+        ], 200);
+//        return $this->successResponse(ProductResource::collection(Product::all()));
     }
 
     /**
@@ -32,37 +38,6 @@ class ProductController extends BaseController
         $product = Product::create($productStoreRequest->validated());
         return $this->successResponse(new ProductResource($product));
     }
-
-
-    //    public function store(Request $request)
-    //    {
-    //        $validator = Validator::make($request->all(), [
-    //            'product' => 'required|string',
-    //            'from' => 'required|string',
-    //            'price_baht' => 'required|numeric',
-    //            'price_dong' => 'required|numeric',
-    //            'price_usd' => 'required|numeric',
-    //            'profit' => 'required|numeric',
-    //            'sale_price' => 'required|numeric',
-    //            'status' => 'required|boolean',
-    //            'quantity' => 'required|integer',
-    //        ]);
-    //
-    //        if ($validator->fails()) {
-    //            return response()->json([
-    //                'status' => 'error',
-    //                'message' => 'Validation error',
-    //                'errors' => $validator->errors()
-    //            ], 422);
-    //        }
-    //
-    //        $product = Product::create($request->all());
-    //        return response()->json([
-    //            'status' => 'success',
-    //            'message' => 'Product created successfully',
-    //            'data' => $product
-    //        ], 201);
-    //    }
 
     /**
      * Display the specified resource.

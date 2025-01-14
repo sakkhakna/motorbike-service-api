@@ -11,7 +11,8 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        $customers = Customer::all();
+//        $customers = Customer::all();
+        $customers = Customer::with('motorbikes')->get();
         return response()->json([
             'status' => 'success',
             'message' => 'Customers retrieved successfully',
@@ -21,7 +22,8 @@ class CustomerController extends Controller
 
 public function show($id)
     {
-        $customer = Customer::find($id);
+//        $customer = Customer::find($id);
+        $customer = Customer::with('motorbikes')->find($id);
         if ($customer) {
             return response()->json([
                 'status' => 'success',

@@ -17,4 +17,11 @@ class Motorbike extends Model
         'plate_number',
         'engine_number',
     ];
+
+    public function customer(): BelongsTo
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
+
 }
