@@ -23,6 +23,7 @@ class ServiceStoreRequest extends FormRequest
     {
         return [
             'motorbike_id' => 'required|exists:motorbikes,id',
+            'mechanic_id' => 'required|exists:mechanics,id',
             'service_date' => ['required', 'date'],
             'service_type' => ['required', 'string'],
             'service_status' => ['required', 'string'],

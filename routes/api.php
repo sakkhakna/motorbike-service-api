@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\MechanicController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\UserController;
@@ -15,6 +16,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/customers', CustomerController::class);
     Route::apiResource('/services', ServiceController::class);
     Route::apiResource('/motorbikes', MotorbikeController::class);
+    Route::apiResource('/mechanics', MechanicController::class);
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy']);
 });
